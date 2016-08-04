@@ -15,7 +15,6 @@ module OmniAuth
         :site          => 'https://accounts.google.com',
         :authorize_url => '/o/oauth2/auth',
         :token_url     => '/o/oauth2/token',
-        :ssl => { :version => "SSLv3" }
       }
 
       args [:client_id, :client_secret]
@@ -119,7 +118,7 @@ module OmniAuth
       def build_access_token
         hash = request.params.slice("access_token", "refresh_token", "expires_in", "token_type")
         ::OAuth2::AccessToken.from_hash(
-          client, 
+          client,
           hash.update(options.access_token_options)
         )
       end
